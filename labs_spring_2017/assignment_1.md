@@ -22,6 +22,11 @@ layout: default
 * Структура даних стек - операції, реалізація ([лінк](http://informatics.mccme.ru/mod/book/view.php?id=580), [ще лінк](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)))
 
 ### [](#header-4)Варіант #1
+#### Завдання
+
+#### Вхідні та вихідні дані
+
+#### Питання та необхідні знання
 
 ### [](#header-4)Варіант #2
 
