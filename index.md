@@ -27,4 +27,4 @@
 
 ### Лабораторні роботи
 * [Лабораторна №1](labs_spring_2017/assignment_1.md)
-* [Лабораторна №1](labs_spring_2017/assignment_3.md)
+* [Лабораторна №3](labs_spring_2017/assignment_3.md)
