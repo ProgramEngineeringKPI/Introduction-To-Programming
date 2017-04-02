@@ -1,6 +1,3 @@
----
-layout: default
----
 [Повернутись](../index.md)
 # [](#header-1)Assignment #2. Data structures
 
