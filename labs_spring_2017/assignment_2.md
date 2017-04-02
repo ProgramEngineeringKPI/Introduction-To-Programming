@@ -68,8 +68,8 @@ X   X       X X
 X X X X X X X X  
 ```
 ### Посилання
-* [Евристика](http://gamedev.stackexchange.com/questions/61850/in-a-star-how-does-the-heuristic-help-determine-your-path) в алгоритмах пошуку шляху в іграх. Рекомендую почитати весь цикл
-* [Нормальний](http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html) опис евристики в A\* від хлопців зі Стенфорду
+* [Евристика](http://gamedev.stackexchange.com/questions/61850/in-a-star-how-does-the-heuristic-help-determine-your-path) в алгоритмах пошуку шляху в іграх
+* [Нормальний](http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html) опис евристики в A\* від хлопців зі Стенфорду. Рекомендую почитати весь цикл
 * [Алгоритм А\*](https://en.wikipedia.org/wiki/A*_search_algorithm)
 * [Бінарна купа](https://en.wikipedia.org/wiki/Binary_heap)
 * [Пошук шляху](https://en.wikipedia.org/wiki/Pathfinding)
