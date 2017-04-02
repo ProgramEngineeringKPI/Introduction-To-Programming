@@ -16,7 +16,7 @@ layout: default
 * Мати уявлення, в яких випадках краще використовувати одні структури, а в яких – інші.
 * Розбиратися в структурах stack, queue, priority queue, heap, linked list, doubly linked list, hash table.
 * Пошук шляху у графі, алгоритм Дейкстри та `А*`
-* Мати поняття, що таке евристика
+* Мати поняття, що таке евристика (посилання є нижче, в варіанті №1)
 * Розуміти, як працює і яке завдання у хеш-функцій *(зауважте, що існують також криптографічні хеш-функції, які не мають відношення до цієї роботи; якщо ви читаєте статтю про хеші і часто зустрічаєте слова "md5", "sha", "bcrypt", "криптографія" – ви читаєте не те, що треба)*
 
 ## [](#header-2)Варіант #0. Обчислення арифметичного виразу
@@ -71,6 +71,8 @@ X   X       X X
 X X X X X X X X  
 ```
 ### Посилання
+* [Евристика](http://gamedev.stackexchange.com/questions/61850/in-a-star-how-does-the-heuristic-help-determine-your-path) в алгоритмах пошуку шляху в іграх. Рекомендую почитати весь цикл
+* [Нормальний](http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html) опис евристики в A\* від хлопців зі Стенфорду
 * [Алгоритм А\*](https://en.wikipedia.org/wiki/A*_search_algorithm)
 * [Бінарна купа](https://en.wikipedia.org/wiki/Binary_heap)
 * [Пошук шляху](https://en.wikipedia.org/wiki/Pathfinding)
