@@ -2,7 +2,7 @@
 layout: default
 ---
 [Повернутись](../index.md)
-# [](#header-1)Assignment #1 – Data structures
+# [](#header-1)Assignment #2 – Data structures
 
 Варіант завдання – остача від ділення номеру залікової книжки на 3. Варіантами можна _обмінюватись_, 
 але не можна просто змінювати за власним бажанням. Також уважно ознайомтесь з загальними правилами здачі лабораторних та принципами оцінювання. 
@@ -17,8 +17,9 @@ layout: default
 * Розбиратися в структурах stack, queue, priority queue, heap, linked list, doubly linked list, hash table.
 * Пошук шляху у графі, алгоритм Дейкстри та `А*`
 * Мати поняття, що таке евристика
+* Розуміти, як працює і яке завдання у хеш-функцій *(зауважте, що існують також криптографічні хеш-функції, які не мають відношення до цієї роботи; якщо ви читаєте статтю про хеші і часто зустрічаєте слова "md5", "sha", "bcrypt", "криптографія" – ви читаєте не те, що треба)*
 
-## [](#header-4)Варіант #0. Обчислення арифметичного виразу
+## [](#header-2)Варіант #0. Обчислення арифметичного виразу
 Обчислити результат математичного виразу, що подається на вхід програми через аргументи командного рядка. Наприклад, якщо ваша програма компілюється у файл calc.exe, вона має запускатися через командний рядок так:
 ```
 > calc.exe 1 + 2 * 4+1 [Enter]
@@ -37,9 +38,11 @@ Result: 10
 * [Інфіксний, постфіксний та префіксний записи](http://www.cs.man.ac.uk/~pjj/cs2121/fix.html)
 * Структура даних стек - операції, реалізація ([лінк](http://informatics.mccme.ru/mod/book/view.php?id=580), [ще лінк](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)))
 
-Стек – одна із найбільш часто використовуваних структур. Використовується в [компіляторах](http://softwareengineering.stackexchange.com/questions/165543/how-to-write-a-very-basic-compiler) для розбору вихідних кодів. В [мікропроцесорах](http://stackoverflow.com/questions/1114047/what-is-the-role-of-stack-in-a-microprocessor) та [комп'ютерах](https://en.wikipedia.org/wiki/Call_stack) стек використовується для передачі параметрів в функції та рекурсивних викликів. 
+Стек – одна із найбільш часто використовуваних структур. Використовується в [компіляторах](http://softwareengineering.stackexchange.com/questions/165543/how-to-write-a-very-basic-compiler) для розбору вихідних кодів. В [мікропроцесорах](http://stackoverflow.com/questions/1114047/what-is-the-role-of-stack-in-a-microprocessor) та [комп'ютерах](https://en.wikipedia.org/wiki/Call_stack) стек використовується для передачі параметрів в функції та рекурсивних викликів.
 
-## [](#header-4)Варіант #1. Пошук найкоротшого шляху
+*\*Написання алгоритму shunting yard та власна імплементація стеку є обов'язковою умовою для здачі цього варіанту*
+
+## [](#header-2)Варіант #1. Пошук найкоротшого шляху
 Знайти в заданому лабіринті найкоротший шлях між двома точками за допомогою [алгоритму А\*](https://en.wikipedia.org/wiki/A*_search_algorithm). Щоб написати цей алгоритм, треба скористатися структурою даних queue, яку треба написати власноруч. Вам знадобиться кілька черг, по одній для кожного пріоритету. Проте для ефективної імплементації цієї задачі зазвичай використовують складніші структури.
 
 *Додаткове завдання (+1 бал):* Реалізувати пріоритетну чергу більш ефективною структурою (наприклад, binary heap).
@@ -74,3 +77,34 @@ X X X X X X X X
 
 Пошук шляху дуже часто використовується для [трасування електричних плат](https://en.wikipedia.org/wiki/Routing_(electronic_design_automation)); для маршрутизації пакетів у [комп'ютерних мережах](https://en.wikipedia.org/wiki/Routing); для написання [AI в іграх](https://arongranberg.com/astar/). Черги та пріоритетні черги використовуються в ОС для контролю [доступу до ресурсів](https://github.com/torvalds/linux/blob/b3a3a9c441e2c8f6b6760de9331023a7906a4ac6/include/linux/prio_heap.h); для [імплементації](https://github.com/torvalds/linux/blob/master/include/linux/plist.h) м'ютексів та черги виконання процесів; в іграх та 3D-програмах для [рендерингу місцевості (terrain)](https://en.wikipedia.org/wiki/ROAM); в алгоритмах стискання зображень/музики/файлів – [кодування Хаффмана](https://en.wikibooks.org/wiki/JPEG_-_Idea_and_Practice/The_Huffman_coding).
 
+*\*Написання алгоритму Дейкстри/A\* та черги є обов'язковою умовою для здачі цього варіанту*
+
+
+## [](#header-2)Варіант #2. Словник
+Розробити програму, яка на запит слова англійською мовою, видаватиме тлумачення цього слова або його переклад на іншу мову. Для цього найкраще буде використати структуру даних "хеш таблиця" (hash map, hash table, dictionary). Найпрстіший спосіб зробити хеш таблицю – за допомогою масиву, в якому зберігаються зв'язні списки (linked list). Обидві структури треба написати власноруч. В простому варіанті завдання можна зазаделегідь виділити достатньо пам'яті для таблиці.
+
+*Додаткове завдання (+1 бал):* Хеш-таблиця має розширюватися в два рази і перебудовуватися, коли кількість доданих значень перевищує 80% від кількості комірок в таблиці.
+
+### Вхідні та вихідні дані
+Ви можете використати готовий словник з [цього файла]() *(Там 22 Мб тексту, в блокноті краще не відкривати)*. [Оригінальний файл]()
+
+Слова даються програмі на вхід через стандартний потік вводу. Наприклад, якщо ви скомпілюєте свою програму в define.exe:
+```
+> define [Enter]
+Type a word to get definition: hash [Enter]
+HASH; Hash, n. Etym: [Formerly hachey, hachee, F. hachis, hacher to hash; of German origin; cf. G. hippe sickle, OHG. hippa, for happia.
+Cf. Hatchet.]  1. That which is hashed or chopped up; meat and vegetables, especially such as have been already cooked, chopped into
+small pieces and mixed.  2. A new mixture of old matter; a second preparation or exhibition. I can not bear elections, and still less
+the hash of them over again in a first session. Walpole.
+Type a word to get definition: ...
+```
+
+### Посилання
+* [Відео лекції](https://www.youtube.com/watch?v=0M_kIqhwbFo) в MIT на тему хеш-таблиць 
+* [Wiki](https://en.wikipedia.org/wiki/Hash_table)
+* [Hash table](http://algs4.cs.princeton.edu/34hash/) з курсу прінстонського університету
+* [Хороше пояснення](http://stackoverflow.com/a/730813) на stackoverflow
+
+Таблиці використовуються практично в будь-якій складній програмі. В базах даних їх використовують для [швидкого пошуку полів](https://en.wikipedia.org/wiki/Database_index), хоча часто використовують складніші B-дерева; в інтерпретованих мовах програмування для збергіння структур (ключами є назви змінних, значеннями – їхні значення); в ядрі [Linux](https://github.com/torvalds/linux/blob/b3a3a9c441e2c8f6b6760de9331023a7906a4ac6/include/linux/hash.h) простіше сказати, де хеші не використовуються; хеш-таблиці є у більшості файлових систем, наприклад для реалізації [індексних дескрипторів](https://github.com/torvalds/linux/blob/42a2d923cc349583ebf6fdd52a7d35e1c2f7e6bd/fs/inode.c); для пошуку помилок у [файлових системах](https://github.com/torvalds/linux/blob/ff812d724254b95df76b7775d1359d856927a840/fs/btrfs/check-integrity.c); в алгоритмі [Рабіна—Карпа](https://uk.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC_%D0%A0%D0%B0%D0%B1%D1%96%D0%BD%D0%B0_%E2%80%94_%D0%9A%D0%B0%D1%80%D0%BF%D0%B0) для пошуку рядків, який в свою чергу часто використовується для пошуку плагіату.
+
+*\*Написання алгоритму хеш-функції та структур linked list і hash table є обов'язковою умовою для здачі цього варіанту*
