@@ -45,7 +45,6 @@ Getting out file input3.bmp... Done.
 * [Стиснення файлів](https://en.wikipedia.org/wiki/Lossless_compression)
 * [Run length encoding](https://en.wikipedia.org/wiki/Run-length_encoding)
 * [Lempel—Ziv](http://math.mit.edu/~goemans/18310S15/lempel-ziv-notes.pdf) (1 частина)
-* []
 
 ## [](#header-2)Варіант #1. Обробка зображень
 Завдання полягає в збільшенні зображення в задану цілу кількість разів. На вхід програмі подаються імена вхідного та вихідного файлів, а також число. Ваша програма має працювати з форматом BMP. Для збільшення зображення не обов\'язково використовувати складні алгоритми – достатньо лише кілька разів копіювати пікселі.
