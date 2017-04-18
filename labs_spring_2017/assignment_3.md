@@ -55,29 +55,29 @@ Getting out file input3.bmp... Done.
 Програма має працювати з bmp файлами, які зберігають колір у форматі 24 бітів на піксель. Файл починається із заголовка, який можна представити у вигляді C-структури
 ```C
 typedef struct {
-     char id[2];            // Завжди дві літери 'B' і 'M'
-->   long filesize;         // Розмір файла в байтах
-     int reserved[2];       // 0, 0
-     long headersize;       // 54L для 24-бітних зображень
-     long infoSize;         // 40L для 24-бітних зображень
-->   long width;            // ширина зображення в пікселях
-->   long depth;            // висота зображення в пікселях
-     short biPlanes;        // 1 (для 24-бітних зображень)
-     short bits;            // 24 (для 24-бітних зображень)
-     long biCompression;    // 0L
-     long biSizeImage;      // Можна поставити в 0L для зображень без компрессії (наш варіант)
-     long biXPelsPerMeter;  // Рекомендована кількість пікселів на метр, можна 0L
-     long biYPelsPerMeter;  // Те саме, по висоті
-     long biClrUsed;        // Для індексованих зображень, можна поставити 0L
-     long biClrImportant;   // Те саме
+     int8 id[2];            // Завжди дві літери 'B' і 'M'
+->   int32 filesize;        // Розмір файла в байтах
+     int16 reserved[2];     // 0, 0
+     int32 headersize;      // 54L для 24-бітних зображень
+     int32 infoSize;        // 40L для 24-бітних зображень
+->   int32 width;           // ширина зображення в пікселях
+->   int32 depth;           // висота зображення в пікселях
+     int16 biPlanes;        // 1 (для 24-бітних зображень)
+     int16 bits;            // 24 (для 24-бітних зображень)
+     int32 biCompression;   // 0L
+     int32 biSizeImage;     // Можна поставити в 0L для зображень без компрессії (наш варіант)
+     int32 biXPelsPerMeter; // Рекомендована кількість пікселів на метр, можна 0L
+     int32 biYPelsPerMeter; // Те саме, по висоті
+     int32 biClrUsed;       // Для індексованих зображень, можна поставити 0L
+     int32 biClrImportant;  // Те саме
      } BMPHEAD;
 ```
 Скоріше за все вам знадобляться лише поля, позначені стрілкою. Далі йде інформація про пікселі у вигляді масиву з таких структур:
 ```C
 typedef struct {
-     byte redComponent;
-     byte greenComponent;
-     byte blueComponent;
+     int8 redComponent;
+     int8 greenComponent;
+     int8 blueComponent;
 } PIXELDATA;
 ```
 Через неймовірну винахідливість авторів формату розмір у байтах кожного рядка пікселів має ділитися на 4. Тому якщо кількість пікселів у рядку момножена на 3 (розмір PIXELDATA) не ділиться на 4, необхідно дописувати ще кілька нульових байтів у кінець кожного рядка. Докладніше про те, як це зробити, можете прочитати [тут](https://www.siggraph.org/education/materials/HyperVis/asp_data/compimag/bmpfile.htm)
@@ -93,6 +93,7 @@ Written result to output.bmp
 * [RGB](https://en.wikipedia.org/wiki/RGB_color_model#Numeric_representations)-кодування
 * [Формат RGB](https://en.wikipedia.org/wiki/BMP_file_format)
 * [Докладний](http://www.digicamsoft.com/bmp/bmp.html) опис формату
+* [Ще один](http://www.dragonwins.com/domains/getteched/bmp/bmpfileformat.htm) простий опис
 
 ## [](#header-2)Варіант #2. Обробка аудіо
 Завдання полягає в розробці програми, що буде збільшувати тривалість аудіофайла в задану кількість разів. Програма має працювати з файлами формату WAVE (зазвичай з розширенням \*.wav). Так само, як і у варіанті 1, не обов\'язково використовувати інтерполяцію, достатньо буде лише копіювати семпли.
@@ -103,32 +104,32 @@ Written result to output.bmp
 Програма має працювати із файлами формату wave із щонайменше будь-якою однією частотою дискретизації, наприклад 44100 Гц, і будь-яким одним бітрейтом, наприклад 128 кбіт/с, на ваш власний вибір. Файл wave складається із розділів і підрозділів *(chunks and subchunks)*. Спочатку файл містить заголовок формату RIFF. Дані в ньому вказують, що міститься в цьому файлі
 ```C
 typedef struct {
-    int chunkId;   // Завжди містить значення 0x52494646 (літери "RIFF")
-    int chunkSize; // 36 + розмір другого підрозділу в байтах
+    int32 chunkId;   // Завжди містить значення 0x52494646 (літери "RIFF")
+    int32 chunkSize; // 36 + розмір другого підрозділу в байтах
                    // Іншими словами 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size)
                    // Це розмір всього файла мінус 8 байтів які займають поля chunkId та chunkSize
-    int format;    // Для wav-файла це завжди 0x57415645 (літери "WAVE")
+    int32 format;    // Для wav-файла це завжди 0x57415645 (літери "WAVE")
 } RIFFHEADER;
 ```
 Перший підрозділ – заголовок WAVE. В ньому міститься інформація про спосіб зберігання файла (частота дискретизації, кількість каналів, бітрейт)
 ```C
 typedef struct {
-    int subchunk1Id;     // Завжди 0x666d7420 – літери "fmt "
-    int subchunk1Size;   // Завжди 16 для аудіо PCM. Це розмір частини підрозділу, що слідує після цього числа
-    int audioFormat;     // PCM = 1
-    short numChannels;   // Mono = 1, Stereo = 2
-    int sampleRate;      // Наприклад 44100
-    int byteRate;        // == SampleRate * NumChannels * BitsPerSample/8
-    int blockAlign;      // == NumChannels * BitsPerSample/8
-    short bitsPerSample; // 8 bits = 8, 16 bits = 16, etc.
+    int32 subchunk1Id;   // Завжди 0x666d7420 – літери "fmt "
+    int32 subchunk1Size; // Завжди 16 для аудіо PCM. Це розмір частини підрозділу, що слідує після цього числа
+    int32 audioFormat;   // PCM = 1
+    int16 numChannels;   // Mono = 1, Stereo = 2
+    int32 sampleRate;    // Наприклад 44100
+    int32 byteRate;      // == SampleRate * NumChannels * BitsPerSample/8
+    int32 blockAlign;    // == NumChannels * BitsPerSample/8
+    int16 bitsPerSample; // 8 bits = 8, 16 bits = 16, etc.
 } SUBCHUNK1;
 ```
 Другий підрозділ – власне аудіодані
 ```C
 typedef struct {
-    int subchunk2Id;   // 0x64617461 – літери "data"
-    int subchunk2Size; // == NumSamples * NumChannels * BitsPerSample/8, кількість байтів аудіоданих
-    byte[] data;       // семпли
+    int32 subchunk2Id;   // 0x64617461 – літери "data"
+    int32 subchunk2Size; // == NumSamples * NumChannels * BitsPerSample/8, кількість байтів аудіоданих
+    int8[] data;         // семпли
 } SUBCHUNK2;
 ```
 
