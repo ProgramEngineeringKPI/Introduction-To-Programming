@@ -56,34 +56,34 @@ Getting out file input3.bmp... Done.
 ### Формат файлів BMP
 Програма має працювати з bmp файлами, які зберігають колір у форматі 24 бітів на піксель. 
 
-*Зауважте, що в С/С++ немає типів даних int8, int16 тощо. Ці числа додані, щоб було однозначно зрозуміло, скільки біт займає кожне поле. Ви можете використовувати типи відповідного розміру char, int, short, long, byte, які залежать від розрядності вашої ОС та опцій компіляції; або можете використати незалежні від розрядності типи \_\_int8, \_\_int16 тощо.*
+*Ви можете використовувати типи відповідного розміру char, int, short, long, byte, які залежать від розрядності вашої ОС та опцій компіляції замість вказаних тут intX_t.*
 
 Файл починається із заголовка, який можна представити у вигляді C-структури
 ```C
 typedef struct {
-     int8 id[2];            // Завжди дві літери 'B' і 'M'
-->   int32 filesize;        // Розмір файла в байтах
-     int16 reserved[2];     // 0, 0
-     int32 headersize;      // 54L для 24-бітних зображень
-     int32 infoSize;        // 40L для 24-бітних зображень
-->   int32 width;           // ширина зображення в пікселях
-->   int32 depth;           // висота зображення в пікселях
-     int16 biPlanes;        // 1 (для 24-бітних зображень)
-     int16 bits;            // 24 (для 24-бітних зображень)
-     int32 biCompression;   // 0L
-     int32 biSizeImage;     // Можна поставити в 0L для зображень без компрессії (наш варіант)
-     int32 biXPelsPerMeter; // Рекомендована кількість пікселів на метр, можна 0L
-     int32 biYPelsPerMeter; // Те саме, по висоті
-     int32 biClrUsed;       // Для індексованих зображень, можна поставити 0L
-     int32 biClrImportant;  // Те саме
+     int8_t id[2];            // Завжди дві літери 'B' і 'M'
+->   int32_t filesize;        // Розмір файла в байтах
+     int16_t reserved[2];     // 0, 0
+     int32_t headersize;      // 54L для 24-бітних зображень
+     int32_t infoSize;        // 40L для 24-бітних зображень
+->   int32_t width;           // ширина зображення в пікселях
+->   int32_t depth;           // висота зображення в пікселях
+     int16_t biPlanes;        // 1 (для 24-бітних зображень)
+     int16_t bits;            // 24 (для 24-бітних зображень)
+     int32_t biCompression;   // 0L
+     int32_t biSizeImage;     // Можна поставити в 0L для зображень без компрессії (наш варіант)
+     int32_t biXPelsPerMeter; // Рекомендована кількість пікселів на метр, можна 0L
+     int32_t biYPelsPerMeter; // Те саме, по висоті
+     int32_t biClrUsed;       // Для індексованих зображень, можна поставити 0L
+     int32_t biClrImportant;  // Те саме
      } BMPHEAD;
 ```
 Скоріше за все вам знадобляться лише поля, позначені стрілкою. Далі йде інформація про пікселі у вигляді масиву з таких структур:
 ```C
 typedef struct {
-     int8 redComponent;
-     int8 greenComponent;
-     int8 blueComponent;
+     int8_t redComponent;
+     int8_t greenComponent;
+     int8_t blueComponent;
 } PIXELDATA;
 ```
 Через неймовірну винахідливість авторів формату розмір у байтах кожного рядка пікселів має ділитися на 4. Тому якщо кількість пікселів у рядку помножена на 3 (розмір PIXELDATA) не ділиться на 4, необхідно дописувати ще кілька нульових байтів у кінець кожного рядка. Докладніше про те, як це зробити, можете прочитати [тут](https://www.siggraph.org/education/materials/HyperVis/asp_data/compimag/bmpfile.htm)
@@ -110,37 +110,37 @@ Written result to output.bmp
 ### Формат файлів WAVE
 Програма має працювати із файлами формату wave із щонайменше будь-якою однією частотою дискретизації, наприклад 44100 Гц, і будь-яким одним бітрейтом, наприклад 128 кбіт/с, на ваш власний вибір. Файл wave складається із розділів і підрозділів *(chunks and subchunks)*. 
 
-*Зауважте, що в С/С++ немає типів даних int8, int16 тощо. Ці числа додані, щоб було однозначно зрозуміло, скільки біт займає кожне поле. Ви можете використовувати типи відповідного розміру char, int, short, long, byte, які залежать від розрядності вашої ОС та опцій компіляції; або можете використати незалежні від розрядності типи \_\_int8, \_\_int16 тощо.*
+*Ви можете використовувати типи відповідного розміру char, int, short, long, byte, які залежать від розрядності вашої ОС та опцій компіляції замість вказаних тут intX_t.*
 
 Спочатку файл містить заголовок формату RIFF. Дані в ньому вказують, що міститься в цьому файлі
 ```C
 typedef struct {
-    int32 chunkId;   // Завжди містить значення 0x52494646 (літери "RIFF")
-    int32 chunkSize; // 36 + розмір другого підрозділу в байтах
+    int32_t chunkId;   // Завжди містить значення 0x52494646 (літери "RIFF")
+    int32_t chunkSize; // 36 + розмір другого підрозділу в байтах
                      // Іншими словами 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size)
                      // Це розмір всього файла мінус 8 байтів які займають поля chunkId та chunkSize
-    int32 format;    // Для wav-файла це завжди 0x57415645 (літери "WAVE")
+    int32_t format;    // Для wav-файла це завжди 0x57415645 (літери "WAVE")
 } RIFFHEADER;
 ```
 Перший підрозділ – заголовок WAVE. В ньому міститься інформація про спосіб зберігання файла (частота дискретизації, кількість каналів, бітрейт)
 ```C
 typedef struct {
-    int32 subchunk1Id;   // Завжди 0x666d7420 – літери "fmt "
-    int32 subchunk1Size; // Завжди 16 для аудіо PCM. Це розмір частини підрозділу, що слідує після цього числа
-    int32 audioFormat;   // PCM = 1
-    int16 numChannels;   // Mono = 1, Stereo = 2
-    int32 sampleRate;    // Наприклад 44100
-    int32 byteRate;      // == SampleRate * NumChannels * BitsPerSample/8
-    int32 blockAlign;    // == NumChannels * BitsPerSample/8
-    int16 bitsPerSample; // 8 bits = 8, 16 bits = 16, etc.
+    int32_t subchunk1Id;   // Завжди 0x666d7420 – літери "fmt "
+    int32_t subchunk1Size; // Завжди 16 для аудіо PCM. Це розмір частини підрозділу, що слідує після цього числа
+    int32_t audioFormat;   // PCM = 1
+    int16_t numChannels;   // Mono = 1, Stereo = 2
+    int32_t sampleRate;    // Наприклад 44100
+    int32_t byteRate;      // == SampleRate * NumChannels * BitsPerSample/8
+    int32_t blockAlign;    // == NumChannels * BitsPerSample/8
+    int16_t bitsPerSample; // 8 bits = 8, 16 bits = 16, etc.
 } SUBCHUNK1;
 ```
 Другий підрозділ – власне аудіодані
 ```C
 typedef struct {
-    int32 subchunk2Id;   // 0x64617461 – літери "data"
-    int32 subchunk2Size; // == NumSamples * NumChannels * BitsPerSample/8, кількість байтів аудіоданих
-    int8[] data;         // семпли
+    int32_t subchunk2Id;   // 0x64617461 – літери "data"
+    int32_t subchunk2Size; // == NumSamples * NumChannels * BitsPerSample/8, кількість байтів аудіоданих
+    int8_t[] data;         // семпли
 } SUBCHUNK2;
 ```
 
