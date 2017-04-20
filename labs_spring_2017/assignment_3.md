@@ -124,8 +124,8 @@ Written result to output.bmp
 typedef struct {
     int32_t chunkId;   // Завжди містить значення 0x52494646 (літери "RIFF")
     int32_t chunkSize; // 36 + розмір другого підрозділу в байтах
-                     // Іншими словами 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size)
-                     // Це розмір всього файла мінус 8 байтів які займають поля chunkId та chunkSize
+                       // Іншими словами 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size)
+                       // Це розмір всього файла мінус 8 байтів які займають поля chunkId та chunkSize
     int32_t format;    // Для wav-файла це завжди 0x57415645 (літери "WAVE")
 } RIFFHEADER;
 ```
