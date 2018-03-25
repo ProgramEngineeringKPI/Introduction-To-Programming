@@ -26,14 +26,14 @@ Ivanov,78,61,95,87,90,+
 Petrov,85,66,70,99,100,+
 ```
 
-Необхідно розібрати [файл](students.csv) ([гітхаб](https://github.com/ProgramEngineeringKPI/Introduction-To-Programming/blob/master/labs_spring_2018/examples1/students.csv)), підрахувати для кожного студента-бюджетника середній бал та вивести вищі 40% сумарного рейтингу студентів + мінімальний бал для отримання стипендії. 
+Необхідно розібрати [файл](examples1/students.csv) ([гітхаб](https://github.com/ProgramEngineeringKPI/Introduction-To-Programming/blob/master/labs_spring_2018/examples1/students.csv)), підрахувати для кожного студента-бюджетника середній бал та вивести вищі 40% сумарного рейтингу студентів + мінімальний бал для отримання стипендії. 
 
 #### Вхідні та вихідні дані
 На вхід програми подається файл students.csv. Вивід – файл rating.csv з прізвищами студентів-стипендиатів та їх середній бал (до третього знаку).
 
 
 ## [](#header-2)Варіант #1
-Визначити список країн-переможців у конкурсі Євробачення-2017. На вхід подається [файл](eurovision.csv) ([гітхаб](https://github.com/ProgramEngineeringKPI/Introduction-To-Programming/blob/master/labs_spring_2018/examples1/eurovision.csv)) формату `Країна, кількість голосів за у країні №1-№20`, наприклад:
+Визначити список країн-переможців у конкурсі Євробачення-2017. На вхід подається [файл](examples1/eurovision.csv) ([гітхаб](https://github.com/ProgramEngineeringKPI/Introduction-To-Programming/blob/master/labs_spring_2018/examples1/eurovision.csv)) формату `Країна, кількість голосів за у країні №1-№20`, наприклад:
 ```csv
 20
 Ukraine,78000,6156,495,7,9456460,45645,21213,898...
@@ -46,7 +46,7 @@ Ukraine,78000,6156,495,7,9456460,45645,21213,898...
 На вхід програми подається файл eurovision.csv. Вивід – файл results.csv з результатами найкращих десяти країн Євробачення
 
 ## [](#header-2)Варіант #2
-Визначити переможця чемпіоната Англії з футболу. Результати матчів подано в [файлі](premier_league.csv) ([гітхаб](https://github.com/ProgramEngineeringKPI/Introduction-To-Programming/blob/master/labs_spring_2018/examples1/premier_league.csv)) наступному форматі – `Назва команди, результати матчу №1-№10`, наприклад:
+Визначити переможця чемпіоната Англії з футболу. Результати матчів подано в [файлі](examples1/premier_league.csv) ([гітхаб](https://github.com/ProgramEngineeringKPI/Introduction-To-Programming/blob/master/labs_spring_2018/examples1/premier_league.csv)) наступному форматі – `Назва команди, результати матчу №1-№10`, наприклад:
 ```csv
 Chelsea FC,3:0,0:0,1:0,0:2,4:1,3:1,0:3,1:5,0:2,4:1
 ```
