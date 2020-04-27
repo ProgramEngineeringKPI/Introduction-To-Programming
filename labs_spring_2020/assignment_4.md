@@ -107,7 +107,7 @@ typedef struct {
 Enlarging image 3 times... Done.
 Written result to output.bmp
 ```
-Приклад [вхідного](./examples_4/bmp.bmp) та [вихідного](./examples_3/bmp5x.bmp) зображень, а також дамп початкових байтів першого зображення у hex-редакторі *(заголовки позначені виділенням)*: ![](./examples_4/bmp_hex.PNG)
+Приклад [вхідного](./examples_4/bmp.bmp) та [вихідного](./examples_4/bmp5x.bmp) зображень, а також дамп початкових байтів першого зображення у hex-редакторі *(заголовки позначені виділенням)*: ![](./examples_4/bmp_hex.PNG)
 
 ### Посилання
 * [RGB](https://en.wikipedia.org/wiki/RGB_color_model#Numeric_representations)-кодування
