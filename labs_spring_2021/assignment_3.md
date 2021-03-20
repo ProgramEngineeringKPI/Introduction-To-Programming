@@ -79,7 +79,7 @@ X X X X X X X X
 * [Евристика](http://gamedev.stackexchange.com/questions/61850/in-a-star-how-does-the-heuristic-help-determine-your-path) в алгоритмах пошуку шляху в іграх
 * [Нормальний](http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html) опис евристики в A\* від хлопців зі Стенфорду. Рекомендую почитати весь цикл
 * [Алгоритм А\*](https://en.wikipedia.org/wiki/A*_search_algorithm) 
-* [Алгоритми BFS, Dijkstra, А\*](https://habr.com/ru/post/331192/)
+* [Алгоритми BFS, Dijkstra, А\*](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
 * [Бінарна купа](https://en.wikipedia.org/wiki/Binary_heap) – використовується як швидка пріоритетна черга в A\*, проте ще раз наголошую, в цій лабораторній роботі її писати не треба
 * [Пошук шляху](https://en.wikipedia.org/wiki/Pathfinding)
 
